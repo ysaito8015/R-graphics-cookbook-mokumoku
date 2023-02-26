@@ -1,7 +1,7 @@
 *.tmp
 *.log
-scripts/pkg
-scripts/lib
+/pkg/
+/lib/
 
 # Created by https://www.toptal.com/developers/gitignore/api/r
 # Edit at https://www.toptal.com/developers/gitignore?templates=r

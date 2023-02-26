@@ -1,10 +1,10 @@
 scriptDir <- getwd()
 projectDir <- dirname(scriptDir)
-libDir <- file.path(scriptDir, "lib")
+libDir <- file.path(projectDir, "lib")
 if (!dir.exists(libDir)) {
     dir.create(libDir)
 }
-pkgDir <- file.path(scriptDir, "pkg")
+pkgDir <- file.path(projectDir, "pkg")
 if (!dir.exists(pkgDir)) {
     dir.create(pkgDir)
 }
@@ -18,7 +18,7 @@ pkgs <- c(
     "gcookbook"
 )
 
-Sys.setenv("PKG_CXXFLAGS"="-std=gnu++20 -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION")
+Sys.setenv(PKG_CXXFLAGS="-std=gnu++20 -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION")
 
 
 if (!(!requireNamespace("devtools", quietly = TRUE))) {
