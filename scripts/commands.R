@@ -1,6 +1,9 @@
-install.packages("pacman")
+.libPaths(here::here("lib"))
 
-pacman::p_load(tidyverse, gcookbook)
+pacman::p_load(
+    tidyverse,
+    gcookbook
+)
 
 ## %>% の使い方例
 head(morley)
