@@ -1,13 +1,4 @@
-scriptDir <- getwd()
-projectDir <- dirname(scriptDir)
-libDir <- file.path(projectDir, "lib")
-if (!dir.exists(libDir)) {
-    dir.create(libDir)
-}
-pkgDir <- file.path(projectDir, "pkg")
-if (!dir.exists(pkgDir)) {
-    dir.create(pkgDir)
-}
+source("environments.R", echo = TRUE)
 
 .libPaths(libDir)
 
@@ -15,14 +6,16 @@ pkgs <- c(
     "vctrs",
     "tidyselect",
     "tidyverse",
-    "gcookbook"
+    "gcookbook",
+    "pacman",
+    "here",
+    "readxl"
 )
 
 Sys.setenv(PKG_CXXFLAGS="-std=gnu++20 -DBOOST_PHOENIX_NO_VARIADIC_EXPRESSION")
 
 
-if (!(!requireNamespace("devtools", quietly = TRUE))) {
-  install.packages(
+install.packages(
     c("devtools", "remotes"),
     lib = libDir,
     contriburl = c(
@@ -33,18 +26,17 @@ if (!(!requireNamespace("devtools", quietly = TRUE))) {
     type = "source",
     dependencies = c("Depends", "Imports", "LinkingTo"),
     INSTALL_opts = "--no-multiarch"
-  )
-}
+)
 
 install.packages(
-  pkgs,
-  lib = libDir,
-  contriburl = c(
-      contrib.url("http://r-forge.r-project.org", "source"),
-      contrib.url("https://cran.rstudio.com/", "source")
-  ),
-  destdir = pkgDir,
-  type = "source",
-  dependencies = c("Depends", "Imports", "LinkingTo"),
-  INSTALL_opts = "--no-multiarch"
+    pkgs,
+    lib = libDir,
+    contriburl = c(
+        contrib.url("http://r-forge.r-project.org", "source"),
+        contrib.url("https://cran.rstudio.com/", "source")
+    ),
+    destdir = pkgDir,
+    type = "source",
+    dependencies = c("Depends", "Imports", "LinkingTo"),
+    INSTALL_opts = "--no-multiarch"
 )
